@@ -1,398 +1,1151 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hidayatul Uluum Awipari</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Fallback font + system fonts for performance -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>PPDB Pondok Pesantren Hidayatul 'Ulum</title>
 
-  <!-- Minimal reset + responsive utilities -->
-  <style>
-    /* Reset / base */
-    :root{
-      --brand:#0f5132;
-      --accent:#198754;
-      --muted:#6c757d;
-      --bg:#ffffff;
-      --max-width:1100px;
-      --container-padding:16px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color:#222;
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      -webkit-text-size-adjust:100%;
-    }
-    a{color:var(--brand); text-decoration:none}
-    img{max-width:100%; height:auto; display:block}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    /* Layout container */
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 var(--container-padding);
-    }
+<style>
 
-    /* Navbar (kept structure: brand + links) */
-    .navbar{
-      position:sticky;
-      top:0;
-      z-index:60;
-      background:rgba(255,255,255,0.95);
-      backdrop-filter: blur(6px);
-      border-bottom:1px solid rgba(0,0,0,0.04);
-    }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 0;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      color:var(--brand);
-      font-size:1.05rem;
-    }
-    .brand img{height:40px; width:auto; border-radius:6px; object-fit:cover}
+:root{
+--primary:#1f5f3b;
+--secondary:#2f7a4b;
+--accent:#9fd3a8;
+--light:#f5f7f2;
+--dark:#173122;
+--text:#2d3b34;
+--white:#ffffff;
+--shadow:0 10px 30px rgba(0,0,0,.08);
+--radius:24px;
+}
 
-    .nav-links{
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
-    .nav-links a{
-      color:#333;
-      font-weight:600;
-      padding:8px 10px;
-      border-radius:6px;
-    }
-    .nav-links a:hover{background:rgba(15,81,50,0.06)}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    /* Mobile toggle */
-    .nav-toggle{
-      display:none;
-      background:transparent;
-      border:0;
-      font-size:1.25rem;
-      padding:6px;
-    }
+html{
+scroll-behavior:smooth;
+}
 
-    /* Hero */
-    .hero{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:72px 16px;
-      background:
-        linear-gradient(180deg, rgba(15,81,50,0.85), rgba(15,81,50,0.6)),
-        url('assets/banner.jpg') center/cover no-repeat;
-      color:#fff;
-      min-height:56vh;
-    }
-    .hero .inner{max-width:900px}
-    .hero h1{font-size:clamp(1.6rem, 4vw, 2.6rem); margin:0 0 8px; line-height:1.05}
-    .hero p{margin:0 0 18px; font-size:clamp(0.95rem, 2.2vw, 1.15rem); opacity:0.95}
-    .btn{
-      display:inline-block;
-      padding:10px 16px;
-      border-radius:8px;
-      font-weight:600;
-      cursor:pointer;
-      border:0;
-    }
-    .btn-primary{background:#fff; color:var(--brand)}
-    .btn-ghost{background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.18)}
+body{
+font-family:'Inter',sans-serif;
+background:linear-gradient(to bottom,#ffffff,#f4f8f2);
+color:var(--text);
+overflow-x:hidden;
+}
 
-    /* Sections */
-    section{padding:48px 0}
-    section h2{font-size:1.4rem; margin:0 0 12px; text-align:center}
-    section p.lead{max-width:820px; margin:0 auto 18px; text-align:center; color:var(--muted)}
+a{
+text-decoration:none;
+color:inherit;
+}
 
-    /* Cards grid for pendidikan */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-      margin-top:18px;
-    }
-    .card{
-      background:#fff;
-      border-radius:10px;
-      padding:18px;
-      box-shadow:0 6px 18px rgba(16,24,40,0.04);
-      min-height:120px;
-    }
-    .card h3{margin:0 0 8px; font-size:1.05rem}
-    .card p{margin:0; color:var(--muted); font-size:0.95rem}
+img{
+max-width:100%;
+display:block;
+}
 
-    /* Media / gallery */
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:10px;
-      margin-top:16px;
-    }
-    .gallery img{width:100%; height:160px; object-fit:cover; border-radius:8px}
+.container{
+width:min(1200px,calc(100% - 24px));
+margin:auto;
+}
 
-    /* Contact */
-    .contact-list{display:flex; flex-direction:column; gap:8px; align-items:center}
-    .map-wrap{margin-top:12px; border-radius:8px; overflow:hidden; box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+/* NAVBAR */
 
-    /* Footer */
-    footer{background:var(--brand); color:#fff; padding:18px 0; text-align:center; font-size:0.95rem}
+header{
+position:sticky;
+top:0;
+z-index:999;
+backdrop-filter:blur(14px);
+background:rgba(255,255,255,.8);
+border-bottom:1px solid rgba(0,0,0,.05);
+}
 
-    /* Responsive adjustments */
-    @media (max-width:900px){
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .nav-links{display:none}
-      .nav-toggle{display:inline-block}
-      .nav-mobile{display:none; flex-direction:column; gap:8px; padding:12px 0}
-      .nav-mobile a{padding:10px; border-radius:8px}
-      .hero{padding:56px 12px; min-height:48vh}
-      .grid{grid-template-columns:1fr}
-      .gallery{grid-template-columns:1fr}
-      section{padding:36px 0}
-    }
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 0;
+}
 
-    /* Utility */
-    .text-center{text-align:center}
-    .muted{color:var(--muted)}
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
-  </style>
+.logo{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.logo-box{
+width:48px;
+height:48px;
+border-radius:16px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:800;
+font-size:18px;
+}
+
+.logo-text h1{
+font-size:16px;
+line-height:1.2;
+color:var(--dark);
+}
+
+.logo-text span{
+font-size:12px;
+color:#666;
+}
+
+.nav-links{
+display:flex;
+gap:14px;
+}
+
+.nav-links a{
+padding:10px 14px;
+border-radius:999px;
+font-size:14px;
+transition:.3s;
+}
+
+.nav-links a:hover{
+background:#eef5ef;
+color:var(--primary);
+}
+
+.menu-btn{
+display:none;
+background:var(--white);
+border:none;
+width:44px;
+height:44px;
+border-radius:14px;
+box-shadow:var(--shadow);
+font-size:18px;
+}
+
+/* HERO */
+
+.hero{
+padding:30px 0;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1.2fr .8fr;
+gap:20px;
+}
+
+.hero-main{
+position:relative;
+overflow:hidden;
+border-radius:var(--radius);
+min-height:600px;
+padding:40px;
+display:flex;
+align-items:flex-end;
+background:
+linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.2)),
+url('assets/hero.jpg') center/cover;
+box-shadow:var(--shadow);
+}
+
+.hero-content{
+max-width:600px;
+}
+
+.badge{
+display:inline-block;
+padding:10px 16px;
+border-radius:999px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(10px);
+color:white;
+font-size:14px;
+margin-bottom:20px;
+border:1px solid rgba(255,255,255,.2);
+}
+
+.hero h2{
+font-size:64px;
+line-height:.95;
+color:white;
+margin-bottom:20px;
+}
+
+.hero p{
+color:rgba(255,255,255,.9);
+line-height:1.8;
+font-size:16px;
+}
+
+.hero-buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:28px;
+}
+
+.btn{
+padding:14px 20px;
+border-radius:999px;
+font-weight:700;
+border:none;
+cursor:pointer;
+transition:.3s;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+}
+
+.btn-primary{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:white;
+}
+
+.btn-light{
+background:white;
+color:var(--primary);
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+/* HERO SIDE */
+
+.hero-side{
+display:grid;
+gap:20px;
+}
+
+.glass-card{
+background:rgba(255,255,255,.85);
+backdrop-filter:blur(10px);
+padding:24px;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+}
+
+.glass-card h3{
+font-size:24px;
+margin-bottom:10px;
+color:var(--dark);
+}
+
+.glass-card p{
+line-height:1.8;
+color:#666;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:20px;
+}
+
+.stat-box{
+background:white;
+padding:16px;
+border-radius:18px;
+border:1px solid rgba(0,0,0,.05);
+}
+
+.stat-box h4{
+font-size:22px;
+color:var(--primary);
+margin-bottom:6px;
+}
+
+.stat-box span{
+font-size:13px;
+color:#666;
+}
+
+/* SECTION */
+
+section{
+padding:70px 0;
+}
+
+.section-title{
+margin-bottom:30px;
+}
+
+.section-title span{
+display:inline-block;
+font-size:13px;
+font-weight:700;
+letter-spacing:2px;
+text-transform:uppercase;
+color:var(--primary);
+margin-bottom:10px;
+}
+
+.section-title h2{
+font-size:42px;
+line-height:1.1;
+color:var(--dark);
+}
+
+.section-title p{
+margin-top:14px;
+color:#666;
+max-width:700px;
+line-height:1.8;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.card{
+background:white;
+padding:24px;
+border-radius:24px;
+box-shadow:var(--shadow);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.icon{
+width:54px;
+height:54px;
+border-radius:16px;
+background:#eef5ef;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+margin-bottom:18px;
+}
+
+.card h3{
+margin-bottom:12px;
+color:var(--dark);
+}
+
+.card p{
+line-height:1.8;
+color:#666;
+}
+
+/* TIMELINE */
+
+.timeline{
+display:grid;
+gap:16px;
+}
+
+.timeline-item{
+background:white;
+padding:18px;
+border-radius:20px;
+display:grid;
+grid-template-columns:120px 1fr;
+gap:14px;
+box-shadow:var(--shadow);
+}
+
+.time{
+font-weight:800;
+color:var(--primary);
+}
+
+.activity{
+font-weight:700;
+margin-bottom:5px;
+}
+
+/* FEES */
+
+.fees{
+display:grid;
+gap:12px;
+}
+
+.fee-item{
+display:flex;
+justify-content:space-between;
+gap:20px;
+padding:16px 20px;
+background:white;
+border-radius:18px;
+box-shadow:var(--shadow);
+}
+
+.fee-item strong{
+color:var(--primary);
+}
+
+/* CONTACT */
+
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+.contact-box{
+background:white;
+padding:24px;
+border-radius:24px;
+box-shadow:var(--shadow);
+}
+
+.contact-item{
+margin-top:18px;
+padding-top:18px;
+border-top:1px dashed rgba(0,0,0,.1);
+}
+
+.contact-item:first-child{
+margin-top:0;
+padding-top:0;
+border:none;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px;
+margin-top:20px;
+}
+
+.gallery div{
+aspect-ratio:4/3;
+border-radius:20px;
+background:
+linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5)),
+url('assets/gallery1.jpg') center/cover;
+box-shadow:var(--shadow);
+}
+
+.gallery div:nth-child(2){
+background:
+linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5)),
+url('assets/gallery2.jpg') center/cover;
+}
+
+.gallery div:nth-child(3){
+background:
+linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5)),
+url('assets/gallery3.jpg') center/cover;
+}
+
+.gallery div:nth-child(4){
+background:
+linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5)),
+url('assets/gallery4.jpg') center/cover;
+}
+
+/* FOOTER */
+
+footer{
+padding:40px 0 120px;
+text-align:center;
+color:#666;
+}
+
+/* BOTTOM NAV MOBILE */
+
+.bottom-nav{
+position:fixed;
+bottom:14px;
+left:50%;
+transform:translateX(-50%);
+width:min(500px,calc(100% - 20px));
+background:rgba(255,255,255,.9);
+backdrop-filter:blur(14px);
+padding:10px;
+border-radius:24px;
+display:none;
+justify-content:space-between;
+z-index:999;
+box-shadow:var(--shadow);
+}
+
+.bottom-nav a{
+flex:1;
+text-align:center;
+padding:12px 6px;
+font-size:12px;
+font-weight:700;
+border-radius:16px;
+}
+
+.bottom-nav a:hover{
+background:#eef5ef;
+color:var(--primary);
+}
+
+/* FLOAT BUTTON */
+
+.float-wa{
+position:fixed;
+right:18px;
+bottom:90px;
+width:58px;
+height:58px;
+border-radius:20px;
+background:#25D366;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:26px;
+box-shadow:var(--shadow);
+z-index:999;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:980px){
+
+.hero-grid,
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+.cards{
+grid-template-columns:1fr 1fr;
+}
+
+.gallery{
+grid-template-columns:1fr 1fr;
+}
+
+.hero h2{
+font-size:52px;
+}
+
+}
+
+@media(max-width:760px){
+
+.menu-btn{
+display:block;
+}
+
+.nav-links{
+position:absolute;
+top:80px;
+left:12px;
+right:12px;
+background:white;
+padding:12px;
+border-radius:24px;
+flex-direction:column;
+display:none;
+box-shadow:var(--shadow);
+}
+
+.nav-links.show{
+display:flex;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.hero-main{
+min-height:560px;
+padding:24px;
+}
+
+.hero h2{
+font-size:42px;
+}
+
+.section-title h2{
+font-size:32px;
+}
+
+.timeline-item{
+grid-template-columns:1fr;
+}
+
+.bottom-nav{
+display:flex;
+}
+
+footer{
+padding-bottom:150px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
-  <!-- Navbar (struktur tetap: brand + links ke section yang sama) -->
-  <header class="navbar" role="banner" aria-label="Navigasi utama">
-    <div class="container nav-inner">
-      <a class="brand" href="#beranda">
-        <!-- Ganti src jika ada logo -->
-        <img src="assets/logo.png" alt="Logo Hidayatul Uluum Awipari" onerror="this.style.display='none'">
-        <span>Hidayatul Uluum Awipari</span>
-      </a>
+<header>
 
-      <nav role="navigation" aria-label="Menu utama">
-        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile">
-          ☰
-          <span class="sr-only">Buka menu</span>
-        </button>
+<div class="container navbar">
 
-        <div class="nav-links" id="navDesktop">
-          <a href="#profil">Profil</a>
-          <a href="#pendidikan">Pendidikan</a>
-          <a href="#ppdb">PPDB</a>
-          <a href="#media">Media</a>
-          <a href="#kontak">Kontak</a>
-        </div>
+<div class="logo">
 
-        <!-- Mobile menu (hidden by default) -->
-        <div id="navMobile" class="nav-mobile container" aria-hidden="true">
-          <a href="#profil">Profil</a>
-          <a href="#pendidikan">Pendidikan</a>
-          <a href="#ppdb">PPDB</a>
-          <a href="#media">Media</a>
-          <a href="#kontak">Kontak</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+<div class="logo-box">
+HU
+</div>
 
-  <!-- Hero / Beranda (ID tetap: beranda) -->
-  <main>
-    <section id="beranda" class="hero" role="region" aria-label="Beranda">
-      <div class="inner container">
-        <h1>Hidayatul Uluum Awipari</h1>
-        <p class="lead">Pesantren — Pendidikan — Pembinaan Akhlak — Tahfidz Al Quran</p>
-        <div style="display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="#ppdb" aria-label="Daftar PPDB">Pendaftaran Santri Baru</a>
-          <a class="btn btn-ghost" href="#kontak" aria-label="Kontak dan Lokasi">Kontak & Lokasi</a>
-        </div>
-      </div>
-    </section>
+<div class="logo-text">
+<h1>Hidayatul 'Ulum</h1>
+<span>PPDB 2026/2027</span>
+</div>
 
-    <!-- Profil (ID tetap: profil) -->
-    <section id="profil" role="region" aria-label="Profil pesantren">
-      <div class="container">
-        <h2>Profil Pesantren</h2>
-        <p class="lead">Hidayatul Uluum Awipari adalah lembaga pendidikan Islam yang mengedepankan pengajaran agama, akhlak, dan penguatan hafalan Al-Qur'an. Kami menyediakan jenjang pendidikan formal dan diniyah untuk berbagai usia.</p>
+</div>
 
-        <div style="display:flex; gap:18px; align-items:center; justify-content:center; margin-top:18px; flex-wrap:wrap">
-          <img src="assets/profil-1.jpg" alt="Kegiatan santri" width="360" height="220" loading="lazy" style="border-radius:10px; box-shadow:0 8px 20px rgba(16,24,40,0.06)">
-          <div style="max-width:480px">
-            <h3 style="margin:0 0 8px">Visi & Misi</h3>
-            <p class="muted" style="margin:0">Mewujudkan generasi berakhlak mulia, berilmu, dan berdaya saing melalui pendidikan agama dan umum yang seimbang.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<button class="menu-btn" id="menuBtn">
+☰
+</button>
 
-    <!-- Pendidikan (ID tetap: pendidikan) -->
-    <section id="pendidikan" role="region" aria-label="Program pendidikan">
-      <div class="container">
-        <h2>Pendidikan</h2>
-        <p class="lead">Program pendidikan kami meliputi pendidikan diniyah, tahfidz, dan kurikulum umum yang terintegrasi.</p>
+<nav class="nav-links" id="navLinks">
 
-        <div class="grid" role="list">
-          <article class="card" role="listitem" aria-label="Pendidikan Diniyah">
-            <h3>Pendidikan Diniyah</h3>
-            <p>Pengajaran kitab kuning, aqidah, fiqh, dan adab dengan metode sanad dan pengajaran berjenjang.</p>
-          </article>
+<a href="#beranda">Beranda</a>
+<a href="#tentang">Tentang</a>
+<a href="#program">Program</a>
+<a href="#jadwal">Jadwal</a>
+<a href="#biaya">Biaya</a>
+<a href="#kontak">Kontak</a>
 
-          <article class="card" role="listitem" aria-label="Program Tahfidz">
-            <h3>Tahfidz</h3>
-            <p>Program hafalan Al-Qur'an dengan target dan metode muroja'ah harian serta pembinaan hafalan.</p>
-          </article>
+</nav>
 
-          <article class="card" role="listitem" aria-label="Kurikulum Umum">
-            <h3>Kurikulum Umum</h3>
-            <p>Pelajaran umum sesuai jenjang, keterampilan hidup, dan pembinaan karakter untuk kesiapan masa depan.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+</div>
 
-    <!-- PPDB (ID tetap: ppdb) -->
-    <section id="ppdb" role="region" aria-label="Informasi PPDB">
-      <div class="container">
-        <h2>PPDB</h2>
-        <p class="lead">Informasi pendaftaran santri baru: alur pendaftaran, persyaratan, biaya, dan jadwal seleksi.</p>
+</header>
 
-        <div style="display:flex; gap:12px; justify-content:center; margin-top:12px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="#kontak" aria-label="Hubungi untuk pendaftaran">Hubungi Panitia</a>
-          <a class="btn" style="background:#f8f9fa; color:#111; border-radius:8px; padding:10px 14px" href="#ppdb-form" aria-label="Lihat persyaratan">Lihat Persyaratan</a>
-        </div>
+<!-- HERO -->
 
-        <!-- Contoh ringkasan alur (tetap sederhana agar struktur tidak berubah) -->
-        <div style="margin-top:18px; max-width:820px; margin-left:auto; margin-right:auto; color:var(--muted); text-align:center">
-          <ol style="text-align:left; padding-left:18px; margin:0 0 8px">
-            <li>Isi formulir pendaftaran (online / offline).</li>
-            <li>Verifikasi berkas dan wawancara singkat.</li>
-            <li>Pengumuman hasil dan daftar ulang.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+<section class="hero" id="beranda">
 
-    <!-- Media (ID tetap: media) -->
-    <section id="media" role="region" aria-label="Galeri dan berita">
-      <div class="container">
-        <h2>Media Center</h2>
-        <p class="lead">Galeri kegiatan, video pengajian, dan pengumuman resmi pesantren.</p>
+<div class="container hero-grid">
 
-        <div class="gallery" aria-hidden="false">
-          <img src="assets/gallery-1.jpg" alt="Kegiatan 1" loading="lazy">
-          <img src="assets/gallery-2.jpg" alt="Kegiatan 2" loading="lazy">
-          <img src="assets/gallery-3.jpg" alt="Kegiatan 3" loading="lazy">
-        </div>
+<div class="hero-main">
 
-        <div style="text-align:center; margin-top:12px">
-          <a class="btn" href="#media" style="background:#f1f3f5; color:#111; border-radius:8px; padding:8px 12px">Lihat Semua Media</a>
-        </div>
-      </div>
-    </section>
+<div class="hero-content">
 
-    <!-- Kontak (ID tetap: kontak) -->
-    <section id="kontak" role="region" aria-label="Kontak dan lokasi">
-      <div class="container">
-        <h2>Kontak & Lokasi</h2>
-        <p class="lead">Hubungi kami untuk informasi lebih lanjut atau pendaftaran.</p>
+<div class="badge">
+PPDB SANTRI BARU 2026 / 2027
+</div>
 
-        <div class="contact-list">
-          <div><strong>Alamat:</strong> Awipari, Tasikmalaya, Jawa Barat</div>
-          <div><strong>Telp / WA:</strong> 08xx-xxxx-xxxx</div>
-          <div><strong>Email:</strong> tu@hidayatululuum.sch.id</div>
-        </div>
+<h2>
+Penerimaan
+Santri Baru
+</h2>
 
-        <div class="map-wrap" style="margin-top:12px">
-          <!-- Embed Google Maps (responsive) -->
-          <iframe
-            title="Peta Lokasi Hidayatul Uluum Awipari"
-            src="https://maps.google.com/maps?q=Awipari%20Tasikmalaya&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            width="100%" height="300" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </section>
-  </main>
+<p>
+Website resmi Pondok Pesantren Hidayatul 'Ulum.
+Desain dibuat modern, elegan, cinematic, dan nyaman digunakan di HP maupun desktop.
+Semua teks dan gambar nanti bisa kamu ganti sendiri saat upload ke GitHub.
+</p>
 
-  <!-- Footer -->
-  <footer role="contentinfo">
-    <div class="container">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
-        <div>© <span id="year"></span> Hidayatul Uluum Awipari</div>
-        <div style="opacity:0.95">Follow: <strong style="margin-left:6px">YouTube</strong> • <strong>Instagram</strong> • <strong>Facebook</strong></div>
-      </div>
-    </div>
-  </footer>
+<div class="hero-buttons">
 
-  <!-- Minimal JS: toggle mobile menu, smooth scroll, set year -->
-  <script>
-    (function(){
-      // Set current year
-      document.getElementById('year').textContent = new Date().getFullYear();
+<a href="#kontak" class="btn btn-primary">
+Daftar Sekarang
+</a>
 
-      // Mobile nav toggle
-      const navToggle = document.getElementById('navToggle');
-      const navMobile = document.getElementById('navMobile');
-      navToggle && navToggle.addEventListener('click', function(){
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        this.setAttribute('aria-expanded', String(!expanded));
-        if(!expanded){
-          navMobile.style.display = 'flex';
-          navMobile.setAttribute('aria-hidden','false');
-        } else {
-          navMobile.style.display = 'none';
-          navMobile.setAttribute('aria-hidden','true');
-        }
-      });
+<a href="#program" class="btn btn-light">
+Lihat Program
+</a>
 
-      // Close mobile menu on link click (improves UX)
-      Array.from(document.querySelectorAll('#navMobile a')).forEach(a=>{
-        a.addEventListener('click', ()=> {
-          navMobile.style.display = 'none';
-          navMobile.setAttribute('aria-hidden','true');
-          navToggle && navToggle.setAttribute('aria-expanded','false');
-        });
-      });
+</div>
 
-      // Smooth scroll for internal links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const targetId = this.getAttribute('href').slice(1);
-          const target = document.getElementById(targetId);
-          if(target){
-            e.preventDefault();
-            const yOffset = 72; // offset for sticky navbar
-            const y = target.getBoundingClientRect().top + window.pageYOffset - yOffset;
-            window.scrollTo({top: y, behavior: 'smooth'});
-          }
-        });
-      });
+</div>
 
-      // Improve image loading: if banner missing, fallback background color
-      const hero = document.querySelector('.hero');
-      const img = new Image();
-      img.src = 'assets/banner.jpg';
-      img.onload = function(){ /* ok */ };
-      img.onerror = function(){ hero.style.background = 'linear-gradient(180deg, rgba(15,81,50,0.95), rgba(15,81,50,0.85))'; };
-    })();
-  </script>
+</div>
+
+<div class="hero-side">
+
+<div class="glass-card">
+
+<h3>Informasi Singkat</h3>
+
+<p>
+Pondok Pesantren Hidayatul 'Ulum menyediakan pendidikan berbasis pesantren dengan pembinaan akhlak, ilmu, dan kedisiplinan santri.
+</p>
+
+<div class="stats">
+
+<div class="stat-box">
+<h4>24 Jam</h4>
+<span>Kegiatan pesantren</span>
+</div>
+
+<div class="stat-box">
+<h4>6 Kelas</h4>
+<span>Jenjang pendidikan</span>
+</div>
+
+<div class="stat-box">
+<h4>Putra</h4>
+<span>Asrama santri</span>
+</div>
+
+<div class="stat-box">
+<h4>Putri</h4>
+<span>Asrama santriwati</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="glass-card">
+
+<h3>Alamat Pesantren</h3>
+
+<p>
+Jl. Awipari Tengah,
+Kecamatan Cibeureum,
+Kota Tasikmalaya,
+Jawa Barat 46196
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TENTANG -->
+
+<section id="tentang">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Tentang Pesantren</span>
+
+<h2>
+Tradisi Islam dengan tampilan modern
+</h2>
+
+<p>
+Berdasarkan brosur Pondok Pesantren Hidayatul 'Ulum,
+pesantren berdiri sejak sekitar tahun 1950-an dan terus berkembang dalam pendidikan Islam.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon">☪</div>
+
+<h3>Akhlak</h3>
+
+<p>
+Pembinaan karakter, sopan santun,
+dan kehidupan islami santri.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📖</div>
+
+<h3>Pendidikan</h3>
+
+<p>
+Pembelajaran kitab, diniyah,
+dan pendidikan formal pesantren.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🕌</div>
+
+<h3>Ibadah</h3>
+
+<p>
+Pembiasaan ibadah berjamaah,
+tahajud, dzikir, dan pembinaan ruhiyah.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PROGRAM -->
+
+<section id="program">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Program Pendidikan</span>
+
+<h2>
+Jenjang Pendidikan Santri
+</h2>
+
+<p>
+Isi daftar pelajaran dan kitab nanti bisa kamu edit lagi sesuai data final dari brosur.
+</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon">1</div>
+
+<h3>Kelas Ibtida</h3>
+
+<p>
+Pembelajaran dasar ilmu agama,
+bacaan Al-Qur'an,
+dan pembentukan akhlak.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">2</div>
+
+<h3>Kelas Tsanawy</h3>
+
+<p>
+Pendalaman kitab,
+nahwu,
+shorof,
+dan pembelajaran lanjutan.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="icon">3</div>
+
+<h3>Ma'had 'Ali</h3>
+
+<p>
+Kajian tingkat lanjut,
+tafsir,
+dan kaderisasi keilmuan pesantren.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- JADWAL -->
+
+<section id="jadwal">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Kegiatan Harian</span>
+
+<h2>
+Rutinitas Santri 24 Jam
+</h2>
+
+</div>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="time">
+03.00
+</div>
+
+<div>
+<div class="activity">
+Bangun malam
+</div>
+
+<p>
+Tahajud dan persiapan ibadah.
+</p>
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="time">
+04.30
+</div>
+
+<div>
+<div class="activity">
+Sholat Subuh berjamaah
+</div>
+
+<p>
+Dzikir, doa, dan kegiatan pagi.
+</p>
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="time">
+07.00
+</div>
+
+<div>
+<div class="activity">
+Belajar di kelas
+</div>
+
+<p>
+Pelajaran diniyah dan formal.
+</p>
+</div>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="time">
+19.00
+</div>
+
+<div>
+<div class="activity">
+Kuliah tafsir dan mengaji
+</div>
+
+<p>
+Kajian malam dan pembelajaran kitab.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="gallery">
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BIAYA -->
+
+<section id="biaya">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Biaya Pesantren</span>
+
+<h2>
+Rincian Biaya Santri
+</h2>
+
+</div>
+
+<div class="fees">
+
+<div class="fee-item">
+<p>Pendaftaran</p>
+<strong>Rp 50.000</strong>
+</div>
+
+<div class="fee-item">
+<p>Syarifah Bulanan</p>
+<strong>Rp 325.000</strong>
+</div>
+
+<div class="fee-item">
+<p>Infaq Bangunan</p>
+<strong>Rp 200.000</strong>
+</div>
+
+<div class="fee-item">
+<p>Seragam Putra</p>
+<strong>Rp 180.000</strong>
+</div>
+
+<div class="fee-item">
+<p>Seragam Putri</p>
+<strong>Rp 250.000</strong>
+</div>
+
+<div class="fee-item">
+<p>Total Putra</p>
+<strong>Rp 875.000</strong>
+</div>
+
+<div class="fee-item">
+<p>Total Putri</p>
+<strong>Rp 945.000</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- KONTAK -->
+
+<section id="kontak">
+
+<div class="container contact-grid">
+
+<div class="contact-box">
+
+<h3>Kontak Pendaftaran</h3>
+
+<div class="contact-item">
+
+<strong>Alamat</strong>
+
+<p>
+Jl. Awipari Tengah,
+Kecamatan Cibeureum,
+Tasikmalaya
+</p>
+
+</div>
+
+<div class="contact-item">
+
+<strong>Admin PPDB</strong>
+
+<p>
+0856 2410 3776
+</p>
+
+</div>
+
+<div class="contact-item">
+
+<strong>Admin PPDB 2</strong>
+
+<p>
+0821 2114 5132
+</p>
+
+</div>
+
+</div>
+
+<div class="contact-box">
+
+<h3>Pendaftaran Online</h3>
+
+<p>
+Bagian ini nanti bisa dihubungkan ke:
+</p>
+
+<br>
+
+<ul style="line-height:2; padding-left:18px;">
+<li>Google Form</li>
+<li>WhatsApp</li>
+<li>Website PPDB</li>
+<li>Dashboard Admin</li>
+</ul>
+
+<br>
+
+<a href="https://wa.me/6285624103776" class="btn btn-primary">
+Chat WhatsApp
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container">
+
+PPDB Pondok Pesantren Hidayatul 'Ulum © 2026
+
+</div>
+
+</footer>
+
+<!-- MOBILE NAV -->
+
+<div class="bottom-nav">
+
+<a href="#beranda">Beranda</a>
+<a href="#program">Program</a>
+<a href="#jadwal">Jadwal</a>
+<a href="#biaya">Biaya</a>
+<a href="#kontak">Kontak</a>
+
+</div>
+
+<!-- FLOAT -->
+
+<a href="https://wa.me/6285624103776" class="float-wa">
+✆
+</a>
+
+<script>
+
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+menuBtn.addEventListener('click',()=>{
+
+navLinks.classList.toggle('show');
+
+});
+
+</script>
+
 </body>
 </html>
