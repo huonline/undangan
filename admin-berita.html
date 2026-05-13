@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Berita</title>
+  <title>Admin Ppdb</title>
 
   <style>
     *{
@@ -176,24 +176,22 @@
 
 <body>
   <div class="container">
-    <h1>Kelola Berita Pondok</h1>
+    <h1>Kelola Gambar</h1>
 
-    <div class="top-note">
-      Format sekarang: <b>upload gambar + judul</b>. Data akan tersimpan ke Firebase Storage dan Firestore, lalu tampil otomatis di web publik.
-    </div>
+  
 
     <div class="card">
-      <h2>Tambah Berita</h2>
+      <h2>Tambah File</h2>
 
-      <input type="text" id="judul" placeholder="Judul berita" />
+      <input type="text" id="judul" placeholder="Judul " />
       <input type="file" id="gambar" accept="image/*" />
 
-      <button id="saveBtn">Simpan Berita</button>
+      <button id="saveBtn">Simpan Gambar</button>
       <div class="muted">Kalau judul kosong atau gambar belum dipilih, data tidak akan disimpan.</div>
     </div>
 
     <div class="card">
-      <h2>Daftar Berita</h2>
+      <h2>Daftar Gambar</h2>
       <div id="beritaList" class="news-grid"></div>
     </div>
   </div>
