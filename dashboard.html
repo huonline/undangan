@@ -196,43 +196,31 @@
       word-break: break-word;
     }
 
-    @media (max-width: 900px) {
-      .cards,
-      .grid {
-        grid-template-columns: 1fr;
-      }
+@media (max-width: 900px) {
 
-      .topbar {
-        min-height: auto;
-        padding: 18px 20px 70px;
-      }
+  .topbar{
+    position:relative;
+    padding-top:80px;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
 
-      .logout-btn {
-        right: 50%;
-        top: auto;
-        bottom: 18px;
-        transform: translateX(50%);
-        width: calc(100% - 40px);
-      }
-    }
+  .brand{
+    flex-direction:column;
+    text-align:center;
+  }
 
-    @media (max-width: 600px) {
-      .wrap {
-        padding: 14px;
-      }
+  .logout-btn{
+    position:absolute;
+    top:18px;
+    right:18px;
+    width:auto;
+    padding:10px 16px;
+    font-size:13px;
+  
 
-      .hero h2 {
-        font-size: 22px;
-      }
-
-      .card .value {
-        font-size: 26px;
-      }
-
-      .brand h1 {
-        font-size: 18px;
-      }
-    }
+}
   </style>
 </head>
 <body>
