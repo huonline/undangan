@@ -37,7 +37,7 @@ body::before{
   position:fixed;
   inset:0;
   z-index:-2;
-  background:url('../background.jpeg') center/cover no-repeat;
+  background:url('../../background.jpeg') center/cover no-repeat;
   transform:scale(1.02);
 }
     
@@ -274,7 +274,7 @@ body::before{
    .hero-shell{
   background:
     linear-gradient(180deg, rgba(8, 24, 14, .18), rgba(8, 24, 14, .58)),
-    url('../background.jpeg') center/cover no-repeat;
+    url('../../background.jpeg') center/cover no-repeat;
 }
 
     .hero-shell::before{
