@@ -234,26 +234,26 @@
     </div>
   </div>
 
-  <script type="module">
-    import { db, storage } from "./firebase.js";
+ <script type="module">
 
-    import {
-      collection,
-      addDoc,
-      deleteDoc,
-      doc,
-      query,
-      orderBy,
-      onSnapshot,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { db, storage } from "./assets/js/firebase.js";
 
-    import {
-      ref,
-      uploadBytes,
-      getDownloadURL,
-      deleteObject
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+import {
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
     const kategoriEl = document.getElementById("kategori");
     const judulInput = document.getElementById("judul");
