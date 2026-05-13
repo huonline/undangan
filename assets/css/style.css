@@ -32,15 +32,15 @@
       background:#fff;
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      background:
-        url('../background.jpeg') center/cover no-repeat;
-      transform:scale(1.02);
-    }
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:url('../background.jpeg') center/cover no-repeat;
+  transform:scale(1.02);
+}
+    
 
    
     a{text-decoration:none;color:inherit}
@@ -271,20 +271,11 @@
       padding:0 0 22px;
     }
 
-    .hero-shell{
-      position:relative;
-      overflow:hidden;
-      border-radius:28px;
-      min-height:560px;
-      color:#fff;
-      box-shadow:var(--shadow);
-      display:flex;
-      align-items:flex-end;
-      background:
-        linear-gradient(180deg, rgba(8, 24, 14, .18), rgba(8, 24, 14, .58)),
-        url('../background.jpeg') center/cover no-repeat;
-      
-    }
+   .hero-shell{
+  background:
+    linear-gradient(180deg, rgba(8, 24, 14, .18), rgba(8, 24, 14, .58)),
+    url('../background.jpeg') center/cover no-repeat;
+}
 
     .hero-shell::before{
       content:"";
