@@ -307,78 +307,8 @@
     margin-top:12px;
   }
 
-  .slider{
-    min-height:260px;
-    border-radius:0 0 22px 22px;
-  }
-
-  .slide{
-    height:260px;
-  }
-
-  .slide-caption{
-    left:14px;
-    right:14px;
-    bottom:14px;
-  }
-
-  .slide-caption h3{
-    font-size:18px;
-  }
-
-  .slide-caption p{
-    font-size:13px;
-  }
-
-  .slider-ui{
-    margin-top:12px;
-  }
-
-  .slider-actions{
-    width:100%;
-    justify-content:space-between;
-  }
-
   .dots{
     gap:7px;
-  }
-
-  .stats-wrap{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-  }
-
-  .stats-wrap::-webkit-scrollbar{
-    display:none;
-  }
-
-  .stats-grid{
-    display:grid;
-    grid-auto-flow:column;
-    grid-auto-columns:minmax(102px, 1fr);
-    grid-template-columns:none;
-    gap:8px;
-    width:max-content;
-    min-width:100%;
-    scroll-snap-type:x mandatory;
-  }
-
-  .stat{
-    scroll-snap-align:start;
-    padding:12px 8px;
-    border-radius:14px;
-    min-width:102px;
-  }
-
-  .stat-value{
-    font-size:22px;
-    margin-bottom:4px;
-  }
-
-  .stat-label{
-    font-size:11px;
-    line-height:1.35;
   }
 
   .location-info{
@@ -417,37 +347,7 @@
     gap:10px;
   }
 
-  .slider{
-    min-height:230px;
-  }
-
-  .slide{
-    height:230px;
-  }
-
-  .stats-grid{
-    grid-auto-columns:minmax(96px, 1fr);
-    gap:7px;
-  }
-
-  .stat{
-    padding:11px 7px;
-    min-width:96px;
-  }
-
-  .stat-value{
-    font-size:21px;
-  }
-
-  .stat-label{
-    font-size:10.5px;
-  }
-
-  .meta-row{
-    font-size:13px;
-    padding:0;
-  }
-}
+ 
 
 @media (max-width:380px){
   .hero-title{
@@ -458,38 +358,6 @@
     width:78px;
     height:78px;
   }
-
-  .stats-grid{
-    grid-auto-columns:minmax(90px, 1fr);
-  }
-
-  .stat{
-    min-width:90px;
-  }
-
-  .slider{
-    min-height:220px;
-  }
-
-  .slide{
-    height:220px;
-  }
-}
-
-/* FULL WIDTH FIX */
-.hero,
-.hero-shell,
-.gallery-wrap,
-.slider,
-.slides,
-.slide,
-.location-full,
-.location-wrap{
-  width:100vw;
-  max-width:100vw;
-  margin-left:calc(50% - 50vw);
-  margin-right:calc(50% - 50vw);
-}
 
 body{
   overflow-x:hidden;
@@ -503,11 +371,4 @@ body{
     padding-left:12px;
     padding-right:12px;
   }
-
-  .slider,
-  .hero-shell{
-    border-radius:0;
-  }
-
-}
 
