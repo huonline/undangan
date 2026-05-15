@@ -235,13 +235,23 @@
     </div>
   </div>
 
-
-  <script type="module">
-  // 1. Hubungkan ke file firebase.js yang ada di folder asset
+<script type="module">
+  // 1. Pastikan path firebase.js ini benar (cek folder asset vs assets)
   import { db } from "./assets/js/firebase.js";
   
-  // 2. Ambil fungsi untuk CRUD dari Firebase
-  import { collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.x/firebase-firestore.js";
+  // 2. Gunakan link CDN yang spesifik versinya agar tidak 404
+  import { 
+    collection, 
+    addDoc, 
+    serverTimestamp, 
+    query, 
+    orderBy, 
+    onSnapshot 
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // ... sisa kode btnSave dan Cloudinary tetap sama ...
+
+  
 
   // Tangkap elemen HTML Admin
   const btnSave = document.getElementById('saveBtn');
