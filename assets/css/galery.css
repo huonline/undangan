@@ -1,14 +1,19 @@
+/* SECTION */
 .galery{
-  padding:20px 0;
+  width:100%;
+  padding:18px 0;
 }
 
+/* GRID */
 .galery-grid{
   display:grid;
+
   grid-template-columns:repeat(3, 1fr);
 
   gap:8px;
 }
 
+/* IMAGE */
 .galery-grid img{
   width:100%;
 
@@ -19,4 +24,16 @@
   border-radius:16px;
 
   display:block;
+
+  transition:.25s ease;
+}
+
+/* LAPTOP / PC */
+@media (min-width:900px){
+
+  .galery-grid{
+    grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
+  }
+
 }
