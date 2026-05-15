@@ -236,152 +236,80 @@
   </div>
 
 <script type="module">
-  // 1. Pastikan path firebase.js ini benar (cek folder asset vs assets)
-  import { db } from "./assets/js/firebase.js";
-  
-  // 2. Gunakan link CDN yang spesifik versinya agar tidak 404
-  import { 
-    collection, 
-    addDoc, 
-    serverTimestamp, 
-    query, 
-    orderBy, 
-    onSnapshot 
-   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  // 1. Koneksi
+  import { db } from "./asset/js/firebase.js";
+  import { collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  }// ... sisa kode btnSave dan Cloudinary tetap sama ...
-
-  
-
-  // Tangkap elemen HTML Admin
   const btnSave = document.getElementById('saveBtn');
   const inputKategori = document.getElementById('kategori');
   const inputJudul = document.getElementById('judul');
   const inputGambar = document.getElementById('gambar');
-  
   const kontenList = document.getElementById('kontenList');
-  const currentInfo = document.getElementById('currentInfo');
 
-  // ==========================================
-  // FITUR 1: UPLOAD KE CLOUDINARY & SIMPAN KE FIREBASE
-  // ==========================================
-btnSave.addEventListener('click', async () => {
-  const file = inputGambar.files[0];
-  const judul = inputJudul.value;
-  const kategori = inputKategori.value;
+  // 2. Fungsi Upload & Simpan
+  btnSave.addEventListener('click', async () => {
+    const file = inputGambar.files[0];
+    const judul = inputJudul.value;
+    const kategori = inputKategori.value;
 
-  if (!file || !judul) return alert("Isi judul dan pilih gambar!");
+    if (!file || !judul) return alert("Isi judul dan gambar!");
 
-  try {
-    btnSave.innerText = "Proses...";
-    btnSave.disabled = true;
+    try {
+      btnSave.innerText = "Proses...";
+      btnSave.disabled = true;
 
-    // 1. SIAPKAN FORM DATA (Urutan berpengaruh di beberapa browser)
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', 'admin_upload'); // Pastikan ini "Unsigned" di Cloudinary
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'admin_upload');
 
-    console.log("Mencoba upload ke Cloudinary...");
-
-    // 2. FETCH KE CLOUDINARY
-    const cloudResponse = await fetch('https://api.cloudinary.com/v1_1/dntmeiqhg/image/upload', {
-      method: 'POST',
-      body: formData
-    });
-
-    const cloudData = await cloudResponse.json();
-    console.log("Hasil Respon Cloudinary:", cloudData); // Cek apakah muncul secure_url di sini
-
-    if (!cloudData.secure_url) {
-      console.error("Gagal dapat URL Cloudinary. Pesan:", cloudData.error?.message);
-      alert("Cloudinary Gagal: " + (cloudData.error?.message || "Cek Koneksi"));
-      btnSave.innerText = "Simpan Konten";
-      btnSave.disabled = false;
-      return;
-    }
-
-    const URLCloudinary = cloudData.secure_url;
-    console.log("URL Berhasil Didapat:", URLCloudinary);
-
-    // 3. SIMPAN KE FIREBASE
-    console.log("Menyimpan ke Firebase di koleksi:", kategori);
-    await addDoc(collection(db, kategori), {
-      title: judul,
-      image_url: URLCloudinary,
-      createdAt: serverTimestamp()
-    });
-
-    alert("BERHASIL! Data sudah masuk Firebase.");
-    inputJudul.value = "";
-    inputGambar.value = "";
-    btnSave.innerText = "Simpan Konten";
-    btnSave.disabled = false;
-
-  } catch (error) {
-    console.error("Error Total:", error);
-    alert("Ada masalah teknis, cek Console F12");
-    btnSave.innerText = "Simpan Konten";
-    btnSave.disabled = false;
-  }
-});
+      const cloudResponse = await fetch('https://api.cloudinary.com/v1_1/dntmeiqhg/image/upload', {
+        method: 'POST',
+        body: formData
+      });
       
-      // Bersihkan form setelah sukses
-      inputJudul.value = "";
-      inputGambar.value = "";
-      btnSave.innerText = "Simpan Konten";
-      btnSave.disabled = false;
-
-    } catch (error) {
-      console.error("Gagal memproses:", error);
+      const cloudData = await cloudResponse.json();
+      
+      if (cloudData.secure_url) {
+        await addDoc(collection(db, kategori), {
+          title: judul,
+          image_url: cloudData.secure_url,
+          createdAt: serverTimestamp()
+        });
+        alert("Berhasil!");
+        inputJudul.value = "";
+        inputGambar.value = "";
+      } else {
+        alert("Cloudinary Gagal: " + (cloudData.error?.message || "Error"));
+      }
+    } catch (err) {
+      console.error(err);
       alert("Terjadi kesalahan sistem.");
+    } finally {
       btnSave.innerText = "Simpan Konten";
       btnSave.disabled = false;
     }
   });
 
-  // ==========================================
-  // FITUR 2: MENAMPILKAN DAFTAR KONTEN OTOMATIS
-  // ==========================================
-  // Fungsi ini membaca data dari Firebase berdasarkan dropdown kategori yang dipilih
-  function loadDaftarKonten() {
+  // 3. Fungsi Tampil Daftar (Real-time)
+  function loadData() {
     const kategori = inputKategori.value;
-    const namaKategori = inputKategori.options[inputKategori.selectedIndex].text;
-    currentInfo.innerText = `Menampilkan: ${namaKategori}`;
-
     const q = query(collection(db, kategori), orderBy("createdAt", "desc"));
     
-    // onSnapshot membuat data langsung tampil tanpa refresh
     onSnapshot(q, (snapshot) => {
-      kontenList.innerHTML = ""; 
-
-      if (snapshot.empty) {
-        kontenList.innerHTML = `<div class="empty-state">Belum ada data di kategori ${namaKategori}.</div>`;
-        return;
-      }
-
+      kontenList.innerHTML = "";
       snapshot.forEach((doc) => {
         const data = doc.data();
-        
-        // Render ke kotak-kotak desain HTML-mu
-        const cardHtml = `
+        kontenList.innerHTML += `
           <div class="item-card">
-            <img src="${data.image_url}" alt="Gambar Konten">
-            <div class="item-body">
-              <h3>${data.title}</h3>
-            </div>
-          </div>
-        `;
-        kontenList.innerHTML += cardHtml;
+            <img src="${data.image_url}">
+            <div class="item-body"><h3>${data.title}</h3></div>
+          </div>`;
       });
     });
   }
 
-  // Panggil fungsi tampilkan konten saat halaman pertama kali dibuka
-  loadDaftarKonten();
-
-  // Panggil fungsi lagi jika admin mengganti pilihan dropdown (misal dari Berita ke Galeri)
-  inputKategori.addEventListener('change', loadDaftarKonten);
-
+  inputKategori.addEventListener('change', loadData);
+  loadData(); // Jalankan saat start
 </script>
 </body>
 </html>
