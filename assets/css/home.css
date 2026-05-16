@@ -320,8 +320,3 @@
   }
 }
 
-@media (max-width:768px){
-  .hero-shell{
-    min-height:auto;
-    border-radius:0 0 22px 22px;
-  }
