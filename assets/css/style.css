@@ -293,7 +293,7 @@ img{
 
 /* Main */
 main{
-  padding-top:76px;
+  padding-top:55px;
 }
 
 .btn{
@@ -525,8 +525,16 @@ footer{
 
 @media (max-width:768px){
   .topbar-inner{
-    height:70px;
+    height:55px;
+    
   }
+
+  main{
+padding-top:55px;
+
+  }
+    
+    
 
  
 
