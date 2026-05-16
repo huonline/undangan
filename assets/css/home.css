@@ -118,12 +118,18 @@
   border: 1px solid rgba(11,107,56,.15);
 }
 
+#donasi .section-card{
+  background: linear-gradient(135deg, #eaf6ef, #dff3e5) !important;
+  border: 1px solid rgba(11,107,56,.18);
+  box-shadow: 0 14px 30px rgba(11,107,56,.12);
+}
+
 /* responsive */
 @media (max-width: 768px){
   .donation-grid{
     flex-direction: column;
   }
-}
+
 
 
 /* Location */
